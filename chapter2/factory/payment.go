@@ -10,6 +10,29 @@ type PaymentMethod interface {
 	Pay(amount float32) string
 }
 
+// --------------------------------------
+
+type CashPM struct{}
+type DebitCardPM struct{}
+
+func (c *CashPM) Pay(amount float32) string {
+	return fmt.Sprintf("%0.2f paid using cash", amount)
+}
+
+func (c *DebitCardPM) Pay(amount float32) string {
+	return fmt.Sprintf("%0.2f paid using debit card", amount)
+}
+
+// --------------------------------------
+
+type NewDebitCardPM struct{}
+
+func (c *NewDebitCardPM) Pay(amount float32) string {
+	return fmt.Sprintf("%#0.2f paid using debit card (new)", amount)
+}
+
+// --------------------------------------
+
 // Our current implemented Payment methods are described here
 const (
 	Cash      = 1
@@ -29,21 +52,4 @@ func GetPaymentMethod(m int) (PaymentMethod, error) {
 	default:
 		return nil, fmt.Errorf("Payment method %d not recognize", m)
 	}
-}
-
-type CashPM struct{}
-type DebitCardPM struct{}
-
-func (c *CashPM) Pay(amount float32) string {
-	return fmt.Sprintf("%0.2f paid using cash", amount)
-}
-
-func (c *DebitCardPM) Pay(amount float32) string {
-	return fmt.Sprintf("%0.2f paid using debit card", amount)
-}
-
-type NewDebitCardPM struct{}
-
-func (c *NewDebitCardPM) Pay(amount float32) string {
-	return fmt.Sprintf("%#0.2f paid using debit card (new)", amount)
 }

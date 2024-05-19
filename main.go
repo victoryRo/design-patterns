@@ -1,7 +1,10 @@
 package main
 
-import "victoryRo/design-patterns/chapter4/decorator/server"
+import (
+	"victoryRo/design-patterns/chapter5/strategy2/cli"
+)
 
 func main() {
-	server.LocalMain()
+	// strategy1.Localmain()
+	cli.LocalMain()
 }
