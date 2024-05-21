@@ -13,11 +13,14 @@ type PaymentMethod interface {
 // --------------------------------------
 
 type CashPM struct{}
-type DebitCardPM struct{}
 
 func (c *CashPM) Pay(amount float32) string {
 	return fmt.Sprintf("%0.2f paid using cash", amount)
 }
+
+// --------------------------------------
+
+type DebitCardPM struct{}
 
 func (c *DebitCardPM) Pay(amount float32) string {
 	return fmt.Sprintf("%0.2f paid using debit card", amount)
